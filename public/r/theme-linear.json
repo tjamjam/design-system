@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-linear",
+  "title": "Linear-like theme",
+  "description": "Refined grays, purple accent, Inter font.",
+  "files": [
+    {
+      "path": "registry/themes/linear.css",
+      "content": "/* ============================================================\n   Linear-like Theme\n   Refined, dense, subtle grays, purple accent, Inter font\n   ============================================================ */\n\n[data-theme=\"linear\"] {\n  --background: #fafafa;\n  --foreground: #1f1f22;\n\n  --card: #ffffff;\n  --card-foreground: #1f1f22;\n\n  --popover: #ffffff;\n  --popover-foreground: #1f1f22;\n\n  /* Linear purple */\n  --primary: #5e6ad2;\n  --primary-foreground: #ffffff;\n\n  --secondary: #f1f1f3;\n  --secondary-foreground: #1f1f22;\n\n  --muted: #f1f1f3;\n  --muted-foreground: #71717a;\n\n  --accent: #ebeafe;\n  --accent-foreground: #4c3dc9;\n\n  --destructive: #eb5757;\n\n  --border: #e6e6e8;\n  --input: #e6e6e8;\n  --ring: #5e6ad2;\n\n  --chart-1: #5e6ad2;\n  --chart-2: #26b5ce;\n  --chart-3: #4cb782;\n  --chart-4: #f2c94c;\n  --chart-5: #eb5757;\n\n  --radius: 0.375rem;\n\n  --sidebar: #f6f6f7;\n  --sidebar-foreground: #1f1f22;\n  --sidebar-primary: #5e6ad2;\n  --sidebar-primary-foreground: #ffffff;\n  --sidebar-accent: #ebeafe;\n  --sidebar-accent-foreground: #4c3dc9;\n  --sidebar-border: #e6e6e8;\n  --sidebar-ring: #5e6ad2;\n\n  --font-sans: var(--font-inter);\n  --font-heading: var(--font-inter);\n  --font-mono: var(--font-geist-mono);\n}\n\n.dark[data-theme=\"linear\"] {\n  --background: #1c1c1f;\n  --foreground: #e4e4e7;\n\n  --card: #232327;\n  --card-foreground: #e4e4e7;\n\n  --popover: #232327;\n  --popover-foreground: #e4e4e7;\n\n  --primary: #8b93e6;\n  --primary-foreground: #0f0f14;\n\n  --secondary: #28282c;\n  --secondary-foreground: #e4e4e7;\n\n  --muted: #28282c;\n  --muted-foreground: #a1a1aa;\n\n  --accent: #2d2a57;\n  --accent-foreground: #b9b6f5;\n\n  --destructive: #f07178;\n\n  --border: #2e2e33;\n  --input: #3a3a40;\n  --ring: #8b93e6;\n\n  --chart-1: #8b93e6;\n  --chart-2: #4dd4e8;\n  --chart-3: #5fd19a;\n  --chart-4: #f5d77a;\n  --chart-5: #f07178;\n\n  --sidebar: #202024;\n  --sidebar-foreground: #e4e4e7;\n  --sidebar-primary: #8b93e6;\n  --sidebar-primary-foreground: #0f0f14;\n  --sidebar-accent: #2d2a57;\n  --sidebar-accent-foreground: #b9b6f5;\n  --sidebar-border: #2e2e33;\n  --sidebar-ring: #8b93e6;\n}\n",
+      "type": "registry:theme",
+      "target": "app/themes/linear.css"
+    }
+  ],
+  "type": "registry:theme"
+}

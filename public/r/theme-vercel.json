@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-vercel",
+  "title": "Vercel-like theme",
+  "description": "Monochromatic, high contrast, Geist font, minimal radii.",
+  "files": [
+    {
+      "path": "registry/themes/vercel.css",
+      "content": "/* ============================================================\n   Vercel-like Theme\n   Monochromatic, tight typography, high contrast, Geist font\n   ============================================================ */\n\n[data-theme=\"vercel\"] {\n  --background: #ffffff;\n  --foreground: #000000;\n\n  --card: #ffffff;\n  --card-foreground: #000000;\n\n  --popover: #ffffff;\n  --popover-foreground: #000000;\n\n  --primary: #000000;\n  --primary-foreground: #ffffff;\n\n  --secondary: #fafafa;\n  --secondary-foreground: #000000;\n\n  --muted: #fafafa;\n  --muted-foreground: #666666;\n\n  --accent: #f5f5f5;\n  --accent-foreground: #000000;\n\n  --destructive: #e00;\n\n  --border: #eaeaea;\n  --input: #eaeaea;\n  --ring: #000000;\n\n  --chart-1: #0070f3;\n  --chart-2: #7928ca;\n  --chart-3: #f81ce5;\n  --chart-4: #ff0080;\n  --chart-5: #50e3c2;\n\n  --radius: 0.375rem;\n\n  --sidebar: #fafafa;\n  --sidebar-foreground: #000000;\n  --sidebar-primary: #000000;\n  --sidebar-primary-foreground: #ffffff;\n  --sidebar-accent: #f5f5f5;\n  --sidebar-accent-foreground: #000000;\n  --sidebar-border: #eaeaea;\n  --sidebar-ring: #000000;\n\n  --font-sans: var(--font-geist);\n  --font-heading: var(--font-geist);\n  --font-mono: var(--font-geist-mono);\n}\n\n.dark[data-theme=\"vercel\"] {\n  --background: #000000;\n  --foreground: #ffffff;\n\n  --card: #0a0a0a;\n  --card-foreground: #ffffff;\n\n  --popover: #0a0a0a;\n  --popover-foreground: #ffffff;\n\n  --primary: #ffffff;\n  --primary-foreground: #000000;\n\n  --secondary: #111111;\n  --secondary-foreground: #ffffff;\n\n  --muted: #111111;\n  --muted-foreground: #888888;\n\n  --accent: #1a1a1a;\n  --accent-foreground: #ffffff;\n\n  --destructive: #ff4d4f;\n\n  --border: #1f1f1f;\n  --input: #1f1f1f;\n  --ring: #ffffff;\n\n  --chart-1: #0070f3;\n  --chart-2: #7928ca;\n  --chart-3: #f81ce5;\n  --chart-4: #ff0080;\n  --chart-5: #50e3c2;\n\n  --sidebar: #0a0a0a;\n  --sidebar-foreground: #ffffff;\n  --sidebar-primary: #ffffff;\n  --sidebar-primary-foreground: #000000;\n  --sidebar-accent: #1a1a1a;\n  --sidebar-accent-foreground: #ffffff;\n  --sidebar-border: #1f1f1f;\n  --sidebar-ring: #ffffff;\n}\n",
+      "type": "registry:theme",
+      "target": "app/themes/vercel.css"
+    }
+  ],
+  "type": "registry:theme"
+}

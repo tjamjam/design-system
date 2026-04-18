@@ -1,0 +1,46 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "tfradet-design-system",
+  "homepage": "https://github.com/tfradet/design-system",
+  "items": [
+    {
+      "name": "theme-ibm",
+      "type": "registry:theme",
+      "title": "IBM theme",
+      "description": "IBM Design Language colors, Spectral + Lexend fonts, sharp corners.",
+      "files": [
+        {
+          "path": "registry/themes/ibm.css",
+          "type": "registry:theme",
+          "target": "app/themes/ibm.css"
+        }
+      ]
+    },
+    {
+      "name": "theme-vercel",
+      "type": "registry:theme",
+      "title": "Vercel-like theme",
+      "description": "Monochromatic, high contrast, Geist font, minimal radii.",
+      "files": [
+        {
+          "path": "registry/themes/vercel.css",
+          "type": "registry:theme",
+          "target": "app/themes/vercel.css"
+        }
+      ]
+    },
+    {
+      "name": "theme-linear",
+      "type": "registry:theme",
+      "title": "Linear-like theme",
+      "description": "Refined grays, purple accent, Inter font.",
+      "files": [
+        {
+          "path": "registry/themes/linear.css",
+          "type": "registry:theme",
+          "target": "app/themes/linear.css"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+/* ============================================================
+   IBM Theme — default
+   Based on IBM Design Language
+   https://www.ibm.com/design/language/color
+   ============================================================ */
+
+[data-theme="ibm"] {
+  /* IBM Gray 10 backgrounds, Gray 100 text */
+  --background: #f4f4f4;
+  --foreground: #161616;
+
+  --card: #ffffff;
+  --card-foreground: #161616;
+
+  --popover: #ffffff;
+  --popover-foreground: #161616;
+
+  /* IBM Blue 60 — the signature brand primary */
+  --primary: #0f62fe;
+  --primary-foreground: #ffffff;
+
+  --secondary: #e0e0e0;
+  --secondary-foreground: #161616;
+
+  --muted: #e0e0e0;
+  --muted-foreground: #525252;
+
+  --accent: #e8daff;
+  --accent-foreground: #491d8b;
+
+  /* Semantic status colors (IBM Design Language) */
+  --success: #198038;
+  --warning: #b28600;
+  --info: #0f62fe;
+
+  /* IBM Red 60 */
+  --destructive: #da1e28;
+
+  --border: #c6c6c6;
+  --input: #c6c6c6;
+  --ring: #0f62fe;
+
+  /* IBM chart palette: cyan, magenta, teal, purple, green from IBM Design Language */
+  --chart-1: #1192e8;
+  --chart-2: #ee538b;
+  --chart-3: #005d5d;
+  --chart-4: #9f1853;
+  --chart-5: #24a148;
+
+  /* IBM is very square — minimal radius */
+  --radius: 0.125rem;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #161616;
+  --sidebar-primary: #0f62fe;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e0e0e0;
+  --sidebar-accent-foreground: #161616;
+  --sidebar-border: #c6c6c6;
+  --sidebar-ring: #0f62fe;
+
+  --font-sans: var(--font-lexend);
+  --font-heading: var(--font-spectral);
+  --font-mono: var(--font-geist-mono);
+}
+
+.dark[data-theme="ibm"] {
+  --background: #161616;
+  --foreground: #f4f4f4;
+
+  --card: #262626;
+  --card-foreground: #f4f4f4;
+
+  --popover: #262626;
+  --popover-foreground: #f4f4f4;
+
+  /* IBM Blue 40 for dark mode */
+  --primary: #78a9ff;
+  --primary-foreground: #001141;
+
+  --secondary: #393939;
+  --secondary-foreground: #f4f4f4;
+
+  --muted: #393939;
+  --muted-foreground: #a8a8a8;
+
+  --accent: #2a1f5c;
+  --accent-foreground: #d4bbff;
+
+  --success: #42be65;
+  --warning: #f1c21b;
+  --info: #78a9ff;
+
+  --destructive: #fa4d56;
+
+  --border: #393939;
+  --input: #525252;
+  --ring: #78a9ff;
+
+  --chart-1: #33b1ff;
+  --chart-2: #ff7eb6;
+  --chart-3: #007d79;
+  --chart-4: #ff7eb6;
+  --chart-5: #42be65;
+
+  --sidebar: #262626;
+  --sidebar-foreground: #f4f4f4;
+  --sidebar-primary: #78a9ff;
+  --sidebar-primary-foreground: #001141;
+  --sidebar-accent: #393939;
+  --sidebar-accent-foreground: #f4f4f4;
+  --sidebar-border: #393939;
+  --sidebar-ring: #78a9ff;
+}

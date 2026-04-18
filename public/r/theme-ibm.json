@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-ibm",
+  "title": "IBM theme",
+  "description": "IBM Design Language colors, Spectral + Lexend fonts, sharp corners.",
+  "files": [
+    {
+      "path": "registry/themes/ibm.css",
+      "content": "/* ============================================================\n   IBM Theme — default\n   Based on IBM Design Language\n   https://www.ibm.com/design/language/color\n   ============================================================ */\n\n[data-theme=\"ibm\"] {\n  /* IBM Gray 10 backgrounds, Gray 100 text */\n  --background: #f4f4f4;\n  --foreground: #161616;\n\n  --card: #ffffff;\n  --card-foreground: #161616;\n\n  --popover: #ffffff;\n  --popover-foreground: #161616;\n\n  /* IBM Blue 60 — the signature brand primary */\n  --primary: #0f62fe;\n  --primary-foreground: #ffffff;\n\n  --secondary: #e0e0e0;\n  --secondary-foreground: #161616;\n\n  --muted: #e0e0e0;\n  --muted-foreground: #525252;\n\n  --accent: #e8daff;\n  --accent-foreground: #491d8b;\n\n  /* IBM Red 60 */\n  --destructive: #da1e28;\n\n  --border: #c6c6c6;\n  --input: #c6c6c6;\n  --ring: #0f62fe;\n\n  /* IBM chart palette: cyan, magenta, teal, purple, green from IBM Design Language */\n  --chart-1: #1192e8;\n  --chart-2: #ee538b;\n  --chart-3: #005d5d;\n  --chart-4: #9f1853;\n  --chart-5: #24a148;\n\n  /* IBM is very square — minimal radius */\n  --radius: 0.125rem;\n\n  --sidebar: #ffffff;\n  --sidebar-foreground: #161616;\n  --sidebar-primary: #0f62fe;\n  --sidebar-primary-foreground: #ffffff;\n  --sidebar-accent: #e0e0e0;\n  --sidebar-accent-foreground: #161616;\n  --sidebar-border: #c6c6c6;\n  --sidebar-ring: #0f62fe;\n\n  --font-sans: var(--font-lexend);\n  --font-heading: var(--font-spectral);\n  --font-mono: var(--font-geist-mono);\n}\n\n.dark[data-theme=\"ibm\"] {\n  --background: #161616;\n  --foreground: #f4f4f4;\n\n  --card: #262626;\n  --card-foreground: #f4f4f4;\n\n  --popover: #262626;\n  --popover-foreground: #f4f4f4;\n\n  /* IBM Blue 40 for dark mode */\n  --primary: #78a9ff;\n  --primary-foreground: #001141;\n\n  --secondary: #393939;\n  --secondary-foreground: #f4f4f4;\n\n  --muted: #393939;\n  --muted-foreground: #a8a8a8;\n\n  --accent: #2a1f5c;\n  --accent-foreground: #d4bbff;\n\n  --destructive: #fa4d56;\n\n  --border: #393939;\n  --input: #525252;\n  --ring: #78a9ff;\n\n  --chart-1: #33b1ff;\n  --chart-2: #ff7eb6;\n  --chart-3: #007d79;\n  --chart-4: #ff7eb6;\n  --chart-5: #42be65;\n\n  --sidebar: #262626;\n  --sidebar-foreground: #f4f4f4;\n  --sidebar-primary: #78a9ff;\n  --sidebar-primary-foreground: #001141;\n  --sidebar-accent: #393939;\n  --sidebar-accent-foreground: #f4f4f4;\n  --sidebar-border: #393939;\n  --sidebar-ring: #78a9ff;\n}\n",
+      "type": "registry:theme",
+      "target": "app/themes/ibm.css"
+    }
+  ],
+  "type": "registry:theme"
+}
