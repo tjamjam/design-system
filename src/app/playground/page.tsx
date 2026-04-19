@@ -10,6 +10,15 @@ import {
   Plus,
 } from "lucide-react";
 import * as React from "react";
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  XAxis,
+} from "recharts";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,6 +29,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  ChartContainer,
+  type ChartConfig,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import {
   DataTable,
   DataTableColumnHeader,
@@ -49,7 +66,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Sparkline } from "@/components/ui/sparkline";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import {
+  runsByStatus,
+  statSparks,
+  throughputByRegion,
+} from "./_data";
 
 type Status = "active" | "paused" | "failed" | "draft";
 
@@ -97,12 +120,60 @@ const statusStyles: Record<Status, { label: string; className: string }> = {
   },
 };
 
-const stats = [
-  { label: "Throughput (p50)", value: "23.4k/s", delta: "+4.2%", positive: true },
-  { label: "Error rate", value: "0.42%", delta: "-0.08%", positive: true },
-  { label: "Active pipelines", value: "48", delta: "+3", positive: true },
-  { label: "Failed runs (24h)", value: "9", delta: "+2", positive: false },
+type Stat = {
+  label: string;
+  value: string;
+  delta: string;
+  positive: boolean;
+  spark: number[];
+  sparkColor?: string;
+};
+
+const stats: Stat[] = [
+  {
+    label: "Throughput (p50)",
+    value: "23.4k/s",
+    delta: "+4.2%",
+    positive: true,
+    spark: statSparks.throughput,
+  },
+  {
+    label: "Error rate",
+    value: "0.42%",
+    delta: "-0.08%",
+    positive: true,
+    spark: statSparks.errorRate,
+  },
+  {
+    label: "Active pipelines",
+    value: "48",
+    delta: "+3",
+    positive: true,
+    spark: statSparks.active,
+  },
+  {
+    label: "Failed runs (24h)",
+    value: "9",
+    delta: "+2",
+    positive: false,
+    spark: statSparks.failed,
+    sparkColor: "var(--destructive)",
+  },
 ];
+
+const throughputConfig = {
+  "us-east-1": { label: "us-east-1", color: "var(--chart-1)" },
+  "us-west-2": { label: "us-west-2", color: "var(--chart-2)" },
+  "eu-central-1": { label: "eu-central-1", color: "var(--chart-3)" },
+  "ap-south-1": { label: "ap-south-1", color: "var(--chart-4)" },
+} satisfies ChartConfig;
+
+const statusConfig = {
+  active: { label: "Active", color: "var(--success)" },
+  paused: { label: "Paused", color: "var(--muted-foreground)" },
+  failed: { label: "Failed", color: "var(--destructive)" },
+  draft: { label: "Draft", color: "var(--info)" },
+} satisfies ChartConfig;
 
 const columns: ColumnDef<Pipeline>[] = [
   {
@@ -174,7 +245,7 @@ const columns: ColumnDef<Pipeline>[] = [
 export default function PlaygroundPage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-b bg-background/60 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b bg-background/80 backdrop-blur">
         <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
             <Button
@@ -215,26 +286,117 @@ export default function PlaygroundPage() {
 
         <section className="grid grid-cols-2 gap-4 pb-6 md:grid-cols-4">
           {stats.map((s) => (
-            <Card key={s.label}>
-              <CardHeader className="pb-2">
-                <CardDescription>{s.label}</CardDescription>
-                <CardTitle className="text-2xl font-semibold tabular-nums">
-                  {s.value}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <span
-                  className={
-                    s.positive
-                      ? "inline-flex items-center gap-1 text-sm text-[var(--success-fg)]"
-                      : "inline-flex items-center gap-1 text-sm text-[var(--destructive-fg)]"
-                  }
-                >
-                  <ArrowUpRight className="size-3.5" /> {s.delta}
-                </span>
-              </CardContent>
-            </Card>
+            <StatCard key={s.label} stat={s} />
           ))}
+        </section>
+
+        <section className="grid gap-4 pb-6 md:grid-cols-3">
+          <Card className="md:col-span-2">
+            <CardHeader>
+              <CardTitle>Throughput by region</CardTitle>
+              <CardDescription>Last 24 hours, events/sec (stacked)</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer
+                config={throughputConfig}
+                className="aspect-auto h-[240px] w-full"
+              >
+                <AreaChart
+                  data={throughputByRegion}
+                  margin={{ top: 8, right: 8, left: 0, bottom: 0 }}
+                >
+                  <defs>
+                    {Object.keys(throughputConfig).map((key) => (
+                      <linearGradient
+                        key={key}
+                        id={`fill-${key}`}
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="0%"
+                          stopColor={`var(--color-${key})`}
+                          stopOpacity={0.5}
+                        />
+                        <stop
+                          offset="100%"
+                          stopColor={`var(--color-${key})`}
+                          stopOpacity={0.05}
+                        />
+                      </linearGradient>
+                    ))}
+                  </defs>
+                  <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="hour"
+                    tickLine={false}
+                    axisLine={false}
+                    tickMargin={8}
+                    minTickGap={24}
+                    interval="preserveStartEnd"
+                  />
+                  <ChartTooltip
+                    content={<ChartTooltipContent indicator="line" />}
+                  />
+                  {Object.keys(throughputConfig).map((key) => (
+                    <Area
+                      key={key}
+                      dataKey={key}
+                      type="monotone"
+                      stackId="a"
+                      stroke={`var(--color-${key})`}
+                      fill={`url(#fill-${key})`}
+                      strokeWidth={1.5}
+                    />
+                  ))}
+                  <ChartLegend content={<ChartLegendContent />} />
+                </AreaChart>
+              </ChartContainer>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Runs by status</CardTitle>
+              <CardDescription>Last 24 hours</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer
+                config={statusConfig}
+                className="aspect-auto h-[240px] w-full"
+              >
+                <BarChart
+                  data={runsByStatus}
+                  margin={{ top: 8, right: 8, left: 0, bottom: 0 }}
+                >
+                  <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="status"
+                    tickLine={false}
+                    axisLine={false}
+                    tickMargin={8}
+                    tickFormatter={(v) =>
+                      statusConfig[v as keyof typeof statusConfig]?.label ?? v
+                    }
+                  />
+                  <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent hideLabel />}
+                  />
+                  <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                    {runsByStatus.map((entry) => (
+                      <Cell
+                        key={entry.status}
+                        fill={`var(--color-${entry.status})`}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ChartContainer>
+            </CardContent>
+          </Card>
         </section>
 
         <Card>
@@ -301,6 +463,31 @@ export default function PlaygroundPage() {
         </Card>
       </main>
     </div>
+  );
+}
+
+function StatCard({ stat }: { stat: Stat }) {
+  return (
+    <Card>
+      <CardHeader className="pb-2">
+        <CardDescription>{stat.label}</CardDescription>
+        <CardTitle className="text-2xl font-semibold tabular-nums">
+          {stat.value}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-3">
+        <span
+          className={
+            stat.positive
+              ? "inline-flex items-center gap-1 text-sm text-[var(--success-fg)]"
+              : "inline-flex items-center gap-1 text-sm text-[var(--destructive-fg)]"
+          }
+        >
+          <ArrowUpRight className="size-3.5" /> {stat.delta}
+        </span>
+        <Sparkline data={stat.spark} color={stat.sparkColor} height={36} />
+      </CardContent>
+    </Card>
   );
 }
 

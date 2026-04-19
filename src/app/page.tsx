@@ -20,7 +20,7 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-b bg-background/60 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b bg-background/80 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-2">
             <Sparkles className="size-5" />
@@ -145,6 +145,42 @@ export default function Home() {
               </Tabs>
             </CardContent>
           </Card>
+
+          <Card className="md:col-span-2">
+            <CardHeader>
+              <CardTitle>Semantic colors</CardTitle>
+              <CardDescription>
+                Status tokens auto-adapt to mode via <code className="font-mono text-xs">color-mix</code>.
+                Each pair is a filled background plus readable text using the
+                derived <code className="font-mono text-xs">-fg</code> /{" "}
+                <code className="font-mono text-xs">-bg</code> tokens.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="grid grid-cols-2 gap-3 md:grid-cols-4">
+              <SemanticSwatch name="Success" token="success" />
+              <SemanticSwatch name="Warning" token="warning" />
+              <SemanticSwatch name="Info" token="info" />
+              <SemanticSwatch name="Destructive" token="destructive" />
+            </CardContent>
+          </Card>
+
+          <Card className="md:col-span-2">
+            <CardHeader>
+              <CardTitle>Chart palette</CardTitle>
+              <CardDescription>
+                <code className="font-mono text-xs">--chart-1</code> through{" "}
+                <code className="font-mono text-xs">--chart-5</code>. When
+                Company is set, these come from the company&apos;s extracted
+                palette. A11y = AA / AAA clamps each one for WCAG contrast
+                while preserving hue.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-2">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <ChartSwatch key={n} index={n} />
+              ))}
+            </CardContent>
+          </Card>
         </section>
       </main>
 
@@ -153,6 +189,43 @@ export default function Home() {
           Built on Next.js 16, React 19, Tailwind v4, shadcn, Base UI.
         </div>
       </footer>
+    </div>
+  );
+}
+
+function SemanticSwatch({
+  name,
+  token,
+}: {
+  name: string;
+  token: "success" | "warning" | "info" | "destructive";
+}) {
+  return (
+    <div
+      className="flex flex-col gap-1 rounded-md border p-3"
+      style={{
+        backgroundColor: `var(--${token}-bg)`,
+        borderColor: `var(--${token}-border)`,
+        color: `var(--${token}-fg)`,
+      }}
+    >
+      <div className="text-sm font-medium">{name}</div>
+      <div className="font-mono text-[11px] opacity-80">--{token}-fg</div>
+    </div>
+  );
+}
+
+function ChartSwatch({ index }: { index: number }) {
+  return (
+    <div className="flex min-w-[96px] flex-1 flex-col items-stretch gap-1.5">
+      <div
+        className="h-12 rounded-md border"
+        style={{ backgroundColor: `var(--chart-${index})` }}
+        aria-label={`chart-${index} swatch`}
+      />
+      <div className="text-center font-mono text-[11px] text-muted-foreground">
+        chart-{index}
+      </div>
     </div>
   );
 }

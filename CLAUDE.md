@@ -13,17 +13,20 @@ A Next.js 16 component library playground + shadcn registry, used for rapid prot
 
 ## Theming model
 
-Five orthogonal axes. Each owns its own tokens and should never clobber another's:
+Six orthogonal axes. Each owns its own tokens and should never clobber another's:
 
 | Axis | Attribute | Owns | Values |
 | --- | --- | --- | --- |
 | Brand | `data-theme` | bg, fg, border, radius, fonts, full palette | `ibm` \| `vercel` \| `linear` |
-| Company | `data-company` | **only** `--primary`, `--primary-foreground`, `--accent`, `--accent-foreground`, `--ring`, `--chart-1` (+ optional font) | `none` \| seeds in `src/lib/companies.ts` |
+| Company | `html[data-company]` | `--chart-1` through `--chart-5`, `--primary` (via `var(--chart-1)`), `--primary-foreground`, `--accent`, `--accent-foreground`, `--ring` (+ optional font) | `none` \| seeds in `src/lib/companies.ts` |
 | Font | `data-font` | `--font-sans`, `--font-heading` | `default` \| 10 curated Google fonts |
 | Density | `data-density` | `height`, `padding` on button/input/select/table | `compact` \| `default` \| `comfortable` |
+| A11y | `data-a11y` + runtime JS | `--chart-1` through `--chart-5` (inline `!important` overrides) | `none` \| `aa` \| `aaa` |
 | Mode | `.dark` class (via next-themes) | dark-variant palette | light \| dark |
 
-Source order in `globals.css`: brand imports first → company overlay → font overlay → density. Later wins on the properties it defines. **A Company overlay must not define anything outside its six tokens** or it breaks the mix.
+Source order in `globals.css`: brand imports first → company overlay → font overlay → density. Later wins on the properties it defines. **Company selector is `html[data-company]`** (bumped specificity) so it wins against `[data-theme]` regardless of Tailwind layer ordering. **A Company overlay must not define anything outside the listed tokens** or it breaks the mix.
+
+The A11y axis works differently: when `data-a11y="aa"` or `"aaa"`, a `useEffect` in `theme-provider.tsx` reads the current computed `--chart-1..5` and `--background`, runs each chart color through `clampForContrast` (`src/lib/a11y-chart-palette.ts`), and writes the result back as inline styles on `<html>` with `!important`. This wins over every stylesheet rule. Toggling back to `none` clears the inline overrides. Only chart tokens are clamped; semantic tokens (`--success`, `--warning`, `--info`, `--destructive`) are untouched because they already have mode-adaptive derivations.
 
 ## Semantic color tokens (critical)
 

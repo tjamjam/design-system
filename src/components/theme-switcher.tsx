@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  A11yLevel,
   Brand,
   Density,
   useBrand,
@@ -33,6 +34,12 @@ const densityLabels: Record<Density, string> = {
   comfortable: "Comfortable",
 };
 
+const a11yLabels: Record<A11yLevel, string> = {
+  none: "None",
+  aa: "AA",
+  aaa: "AAA",
+};
+
 export function ThemeSwitcher() {
   const {
     brand,
@@ -43,6 +50,8 @@ export function ThemeSwitcher() {
     setFont,
     company,
     setCompany,
+    a11y,
+    setA11y,
   } = useBrand();
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
@@ -118,6 +127,24 @@ export function ThemeSwitcher() {
                   </SelectItem>
                 ))}
             </FontGroup>
+          </SelectContent>
+        </Select>
+      </Field>
+
+      <Field label="A11y" htmlFor="theme-a11y">
+        <Select
+          value={a11y}
+          onValueChange={(v) => v && setA11y(v as A11yLevel)}
+        >
+          <SelectTrigger id="theme-a11y" className="w-[100px]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.entries(a11yLabels).map(([value, label]) => (
+              <SelectItem key={value} value={value}>
+                {label}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </Field>

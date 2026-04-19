@@ -1,4 +1,3 @@
-import localFont from "next/font/local";
 import {
   DM_Sans,
   Figtree,
@@ -14,22 +13,8 @@ import {
   Spectral,
 } from "next/font/google";
 
-export const dollyPro = localFont({
-  src: "../../public/fonts/Dolly/DollyPro-Bold.woff2",
-  weight: "700",
-  style: "normal",
-  display: "swap",
-  variable: "--font-dolly-pro",
-});
-
-export const dollyProSmallCaps = localFont({
-  src: "../../public/fonts/Dolly/DollyPro-RegularSmallCaps.woff2",
-  weight: "400",
-  style: "normal",
-  display: "swap",
-  variable: "--font-dolly-pro-smallcaps",
-});
-
+// Theme-default fonts (preloaded): loaded eagerly so Spectral + Lexend +
+// Geist + Inter are available without a blocking swap on first paint.
 export const spectral = Spectral({
   subsets: ["latin"],
   weight: ["300", "400", "600", "700"],
@@ -61,8 +46,6 @@ export const inter = Inter({
   variable: "--font-inter",
 });
 
-// Picker-only fonts: not preloaded (only fetched when the user selects them).
-// Theme-default fonts (Spectral, Lexend, Geist, Inter) stay preloaded above.
 export const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -113,9 +96,13 @@ export const figtree = Figtree({
   variable: "--font-figtree",
 });
 
+/**
+ * All font CSS variables joined as a className-ready string. Spread into
+ * your root <html> to make every font variable available:
+ *
+ *   <html className={fontVariables}>
+ */
 export const fontVariables = [
-  dollyPro.variable,
-  dollyProSmallCaps.variable,
   spectral.variable,
   lexend.variable,
   geist.variable,
