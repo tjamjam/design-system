@@ -3,12 +3,12 @@ import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-run
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import * as React from "react";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
-import { useBrand, } from "@/components/theme-provider";
-import { companies } from "@/lib/companies";
-import { fontOptions } from "@/lib/font-options";
+import { Button } from "./ui/button";
+import { Label } from "./ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "./ui/select";
+import { useBrand, } from "./theme-provider";
+import { companies } from "../lib/companies";
+import { fontOptions } from "../lib/font-options";
 const brandLabels = {
     ibm: "IBM",
     vercel: "Vercel",

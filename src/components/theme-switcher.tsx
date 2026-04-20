@@ -4,23 +4,23 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import { Button } from "./ui/button";
+import { Label } from "./ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "./ui/select";
 import {
   A11yLevel,
   Brand,
   Density,
   useBrand,
-} from "@/components/theme-provider";
-import { companies, type CompanyKey } from "@/lib/companies";
-import { fontOptions, type FontSlot } from "@/lib/font-options";
+} from "./theme-provider";
+import { companies, type CompanyKey } from "../lib/companies";
+import { fontOptions, type FontSlot } from "../lib/font-options";
 
 const brandLabels: Record<Brand, string> = {
   ibm: "IBM",

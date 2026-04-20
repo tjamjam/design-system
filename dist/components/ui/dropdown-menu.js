@@ -1,7 +1,7 @@
 "use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 import { ChevronRightIcon, CheckIcon } from "lucide-react";
 function DropdownMenu({ ...props }) {
     return _jsx(MenuPrimitive.Root, { "data-slot": "dropdown-menu", ...props });

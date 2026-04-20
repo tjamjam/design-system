@@ -1,7 +1,7 @@
 "use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 import { ChevronDownIcon, CheckIcon, ChevronUpIcon } from "lucide-react";
 const Select = SelectPrimitive.Root;
 function SelectGroup({ className, ...props }) {

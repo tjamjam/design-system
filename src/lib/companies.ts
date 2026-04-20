@@ -1,4 +1,4 @@
-import type { FontKey } from "@/lib/font-options";
+import type { FontKey } from "./font-options";
 
 export type CompanyKey =
   | "none"

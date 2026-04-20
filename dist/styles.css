@@ -3,9 +3,9 @@
  * Bundled by scripts/bundle-styles.mjs. Do not edit by hand.
  * Source of truth: src/app/globals.css
  */
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+/* stripped consumer-owned import: tailwindcss */
+/* stripped consumer-owned import: tw-animate-css */
+/* stripped consumer-owned import: shadcn/tailwind.css */
 
 /* inlined from ../../registry/themes/ibm.css */
 /* ============================================================
@@ -618,8 +618,16 @@ html.dark[data-company="hubble"] {
 
 /* ============================================================
    Interactive cursor
+   Applies to design-system primitives (via data-slot) AND to any
+   plain native interactive elements in the consumer's app.
    ============================================================ */
 
+button:not(:disabled),
+a[href],
+label[for],
+summary,
+[role="button"]:not([aria-disabled="true"]),
+[role="link"],
 [data-slot="button"],
 [data-slot="select-trigger"],
 [data-slot="select-item"],
@@ -645,6 +653,24 @@ html.dark[data-company="hubble"] {
 [data-slot="tabs-trigger"]:disabled,
 [aria-disabled="true"] {
   cursor: not-allowed;
+}
+
+/* ============================================================
+   Chart focus suppression
+   Recharts SVGs receive focus on click and inherit the default
+   @layer base outline-ring. Suppress it so click-to-focus on a
+   chart doesn't leave a stray ring behind.
+   ============================================================ */
+
+[data-slot="chart"],
+[data-slot="chart"] svg,
+[data-slot="chart"] :focus,
+[data-slot="chart"] :focus-visible,
+[data-slot="chart"] .recharts-surface,
+[data-slot="chart"] .recharts-layer,
+[data-slot="chart"] .recharts-sector,
+[data-slot="chart"] .recharts-wrapper {
+  outline: none;
 }
 
 /* ============================================================

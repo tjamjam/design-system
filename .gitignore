@@ -42,3 +42,6 @@ next-env.d.ts
 
 # playwright mcp artifacts (dev only)
 .playwright-mcp/
+
+# packed tarballs (regenerated via `npm pack`)
+*.tgz

@@ -1,7 +1,7 @@
 "use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 function TooltipProvider({ delay = 0, ...props }) {
     return (_jsx(TooltipPrimitive.Provider, { "data-slot": "tooltip-provider", delay: delay, ...props }));
 }

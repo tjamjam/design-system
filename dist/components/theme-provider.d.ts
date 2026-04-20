@@ -1,7 +1,7 @@
 import * as React from "react";
-import type { CompanyKey } from "@/lib/companies";
-import type { FontSlot } from "@/lib/font-options";
-import { type A11yLevel } from "@/lib/a11y-chart-palette";
+import type { CompanyKey } from "../lib/companies";
+import type { FontSlot } from "../lib/font-options";
+import { type A11yLevel } from "../lib/a11y-chart-palette";
 export type Brand = "ibm" | "vercel" | "linear";
 export type Density = "compact" | "default" | "comfortable";
 export type { A11yLevel };

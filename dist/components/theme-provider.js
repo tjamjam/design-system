@@ -2,7 +2,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
 import * as React from "react";
-import { computeA11yPalette, } from "@/lib/a11y-chart-palette";
+import { computeA11yPalette, } from "../lib/a11y-chart-palette";
 const BrandContext = React.createContext(null);
 const STORAGE_BRAND = "design-system:brand";
 const STORAGE_DENSITY = "design-system:density";

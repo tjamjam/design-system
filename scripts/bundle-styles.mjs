@@ -20,6 +20,15 @@ const OUT_FILE = resolve(OUT_DIR, "styles.css");
 
 const IMPORT_RE = /^\s*@import\s+["']([^"']+)["']\s*;?\s*$/;
 
+// These imports belong to the consumer's CSS pipeline, not ours. Stripping
+// them from the bundle ensures Tailwind's content scanning runs in the
+// consumer's context (reading the consumer's src/) rather than in ours.
+const STRIP_IMPORTS = new Set([
+  "tailwindcss",
+  "tw-animate-css",
+  "shadcn/tailwind.css",
+]);
+
 async function inlineLocalImports(entryPath, visited = new Set()) {
   const absEntry = resolve(entryPath);
   if (visited.has(absEntry)) {
@@ -39,11 +48,14 @@ async function inlineLocalImports(entryPath, visited = new Set()) {
       continue;
     }
     const target = m[1];
+    if (STRIP_IMPORTS.has(target)) {
+      out.push(`/* stripped consumer-owned import: ${target} */`);
+      continue;
+    }
     const isLocal =
       target.startsWith("./") || target.startsWith("../") || target.startsWith("/");
     if (!isLocal) {
-      // node-module import (tailwindcss, tw-animate-css, shadcn/tailwind.css).
-      // Keep as-is; consumer's bundler resolves.
+      // Any other node-module import stays as-is for the consumer's bundler.
       out.push(line);
       continue;
     }
