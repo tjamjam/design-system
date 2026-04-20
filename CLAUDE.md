@@ -110,6 +110,39 @@ When iterating on the package against a tarball-installed consumer (e.g. `file:.
 3. In the consumer: `npm install file:../design-system/tfradet-design-system-0.1.0.tgz`
 4. **Clear the consumer's `.next/` cache and restart the dev server.** HMR does not invalidate Tailwind v4's `@source` scan of `node_modules`, so the new tarball ships but utility classes used only by the updated component disappear from the compiled CSS until the next cold build. Symptom: the page renders as unstyled HTML after a reinstall. `rm -rf .next && npm run dev` fixes it.
 
+## Keeping private companies out of the public repo
+
+The committed `src/lib/companies.ts` ships with IBM only. Real client
+or employer palettes live in the two files `src/lib/companies.ts` and
+`src/app/globals.css` locally, but should never be pushed.
+
+The git-native way to let your working copy diverge from the tracked
+version without polluting `git status`:
+
+```bash
+# Edit both files to add your private company entries, then:
+git update-index --skip-worktree src/lib/companies.ts
+git update-index --skip-worktree src/app/globals.css
+```
+
+From then on git ignores changes to those files. To re-sync with an
+upstream change to the tracked version, or to push a genuine edit:
+
+```bash
+git update-index --no-skip-worktree src/lib/companies.ts
+git update-index --no-skip-worktree src/app/globals.css
+# stash or commit your local diff, pull/rebase, then re-apply as needed.
+```
+
+`git ls-files -v | grep '^S'` lists files currently in skip-worktree
+mode so you do not forget which ones you are hiding.
+
+Prior commits still contain the old private entries. If you need them
+gone from history, use `git filter-repo --path src/lib/companies.ts
+--path src/app/globals.css --invert-paths` on a clone, then force-push.
+Doing that rewrites history, so coordinate with anyone else who has
+cloned the repo.
+
 ## Release workflow
 
 1. Build: `npm run build:pkg` and confirm `dist/` is current.

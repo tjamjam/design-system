@@ -1,5 +1,5 @@
 import type { FontKey } from "./font-options";
-export type CompanyKey = "none" | "ibm" | "pomelocare" | "overstory" | "apartmentiq" | "hubble";
+export type CompanyKey = "none" | "ibm" | (string & {});
 export type CompanyPalette = {
     chart: [string, string, string, string, string];
     primaryForeground: string;

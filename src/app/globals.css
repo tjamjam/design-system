@@ -156,107 +156,12 @@ html.dark[data-company="ibm"] {
   --ring: var(--chart-1);
 }
 
-html[data-company="pomelocare"] {
-  --chart-1: #3898ec;
-  --chart-2: #f5a799;
-  --chart-3: #6248ff;
-  --chart-4: #be4aa5;
-  --chart-5: #b036ec;
-  --primary: var(--chart-1);
-  --primary-foreground: #ffffff;
-  --accent: #142fdb1f;
-  --accent-foreground: #142fdb;
-  --ring: var(--chart-1);
-}
-html.dark[data-company="pomelocare"] {
-  --chart-1: #3898ec;
-  --chart-2: #f5a799;
-  --chart-3: #6248ff;
-  --chart-4: #be4aa5;
-  --chart-5: #b036ec;
-  --primary: var(--chart-1);
-  --primary-foreground: #ffffff;
-  --accent: #6578f12e;
-  --accent-foreground: #6578f1;
-  --ring: var(--chart-1);
-}
-
-html[data-company="overstory"] {
-  --chart-1: #00b2ff;
-  --chart-2: #f0523d;
-  --chart-3: #7dbb00;
-  --chart-4: #ae81ff;
-  --chart-5: #00ab6c;
-  --primary: var(--chart-1);
-  --primary-foreground: #ffffff;
-  --accent: #003dcc1f;
-  --accent-foreground: #003dcc;
-  --ring: var(--chart-1);
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-inter);
-}
-html.dark[data-company="overstory"] {
-  --chart-1: #00b2ff;
-  --chart-2: #f0523d;
-  --chart-3: #c4ff4d;
-  --chart-4: #ae81ff;
-  --chart-5: #4dffbe;
-  --primary: var(--chart-1);
-  --primary-foreground: #ffffff;
-  --accent: #3370ff2e;
-  --accent-foreground: #3370ff;
-  --ring: var(--chart-1);
-}
-
-html[data-company="apartmentiq"] {
-  --chart-1: #b8e4fc;
-  --chart-2: #8dc63f;
-  --chart-3: #dcb6fc;
-  --chart-4: #fcb6c7;
-  --chart-5: #b6fcc0;
-  --primary: var(--chart-1);
-  --primary-foreground: #0a0a0a;
-  --accent: #85a2fa1f;
-  --accent-foreground: #85a2fa;
-  --ring: var(--chart-1);
-}
-html.dark[data-company="apartmentiq"] {
-  --chart-1: #b8e4fc;
-  --chart-2: #8dc63f;
-  --chart-3: #dcb6fc;
-  --chart-4: #fcb6c7;
-  --chart-5: #b6fcc0;
-  --primary: var(--chart-1);
-  --primary-foreground: #0a0a0a;
-  --accent: #9db5fb2e;
-  --accent-foreground: #9db5fb;
-  --ring: var(--chart-1);
-}
-
-html[data-company="hubble"] {
-  --chart-1: #5761ff;
-  --chart-2: #8c30dc;
-  --chart-3: #ffdd75;
-  --chart-4: #911f8a;
-  --chart-5: #dd4141;
-  --primary: var(--chart-1);
-  --primary-foreground: #ffffff;
-  --accent: #6d24ff1f;
-  --accent-foreground: #6d24ff;
-  --ring: var(--chart-1);
-}
-html.dark[data-company="hubble"] {
-  --chart-1: #5761ff;
-  --chart-2: #8c30dc;
-  --chart-3: #ffdd75;
-  --chart-4: #e06cd8;
-  --chart-5: #dd4141;
-  --primary: var(--chart-1);
-  --primary-foreground: #ffffff;
-  --accent: #b18aff2e;
-  --accent-foreground: #b18aff;
-  --ring: var(--chart-1);
-}
+/* Additional private company palettes are added locally. The block
+   directly above (IBM) is the only company seed committed publicly.
+   To add more companies without committing them, append matching
+   html[data-company="..."] blocks here and run
+   `git update-index --skip-worktree src/app/globals.css` so local
+   edits do not show up in git status. */
 
 /* ============================================================
    Density
