@@ -1,6 +1,6 @@
 {
   "name": "@tfradet/design-system",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Themeable component library with brand, company, font, density, and a11y axes.",
   "license": "UNLICENSED",

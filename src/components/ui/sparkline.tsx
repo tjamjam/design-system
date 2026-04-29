@@ -60,8 +60,14 @@ export function Sparkline({
       ref={wrapperRef}
       data-slot="sparkline"
       className={cn("[&_*]:outline-none", className)}
-      style={{ width: "100%", height }}
+      style={{ width: "100%", height, touchAction: "none" }}
+      onPointerDown={(e) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+        handleMove(e.clientX);
+      }}
       onPointerMove={(e) => handleMove(e.clientX)}
+      onPointerUp={() => onHoverIndex?.(null)}
+      onPointerCancel={() => onHoverIndex?.(null)}
       onPointerLeave={() => onHoverIndex?.(null)}
     >
       <ResponsiveContainer width="100%" height="100%">
