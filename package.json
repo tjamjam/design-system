@@ -51,7 +51,7 @@
     }
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "PORT=3031 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

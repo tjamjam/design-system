@@ -53,22 +53,6 @@
 }
 
 /* ============================================================
-   Font override (applied when data-font is set on <html>)
-   Overrides both body and heading fonts so a single pick is global.
-   ============================================================ */
-
-[data-font="inter"]            { --font-sans: var(--font-inter);            --font-heading: var(--font-inter); }
-[data-font="ibm-plex-sans"]    { --font-sans: var(--font-ibm-plex-sans);    --font-heading: var(--font-ibm-plex-sans); }
-[data-font="geist"]            { --font-sans: var(--font-geist);            --font-heading: var(--font-geist); }
-[data-font="lexend"]           { --font-sans: var(--font-lexend);           --font-heading: var(--font-lexend); }
-[data-font="public-sans"]      { --font-sans: var(--font-public-sans);      --font-heading: var(--font-public-sans); }
-[data-font="manrope"]          { --font-sans: var(--font-manrope);          --font-heading: var(--font-manrope); }
-[data-font="dm-sans"]          { --font-sans: var(--font-dm-sans);          --font-heading: var(--font-dm-sans); }
-[data-font="plus-jakarta-sans"]{ --font-sans: var(--font-plus-jakarta-sans);--font-heading: var(--font-plus-jakarta-sans); }
-[data-font="outfit"]           { --font-sans: var(--font-outfit);           --font-heading: var(--font-outfit); }
-[data-font="figtree"]          { --font-sans: var(--font-figtree);          --font-heading: var(--font-figtree); }
-
-/* ============================================================
    Adaptive semantic tokens
    ------------------------------------------------------------
    Given ANY base color token (--success, --warning, --info,
@@ -162,6 +146,23 @@ html.dark[data-company="ibm"] {
    html[data-company="..."] blocks here and run
    `git update-index --skip-worktree src/app/globals.css` so local
    edits do not show up in git status. */
+
+/* ============================================================
+   Font override (applied when data-font is set on <html>)
+   Sourced AFTER Company so a user font pick wins over a Company's
+   seeded font. html[...] specificity matches html[data-company].
+   ============================================================ */
+
+html[data-font="inter"]            { --font-sans: var(--font-inter);            --font-heading: var(--font-inter); }
+html[data-font="ibm-plex-sans"]    { --font-sans: var(--font-ibm-plex-sans);    --font-heading: var(--font-ibm-plex-sans); }
+html[data-font="geist"]            { --font-sans: var(--font-geist);            --font-heading: var(--font-geist); }
+html[data-font="lexend"]           { --font-sans: var(--font-lexend);           --font-heading: var(--font-lexend); }
+html[data-font="public-sans"]      { --font-sans: var(--font-public-sans);      --font-heading: var(--font-public-sans); }
+html[data-font="manrope"]          { --font-sans: var(--font-manrope);          --font-heading: var(--font-manrope); }
+html[data-font="dm-sans"]          { --font-sans: var(--font-dm-sans);          --font-heading: var(--font-dm-sans); }
+html[data-font="plus-jakarta-sans"]{ --font-sans: var(--font-plus-jakarta-sans);--font-heading: var(--font-plus-jakarta-sans); }
+html[data-font="outfit"]           { --font-sans: var(--font-outfit);           --font-heading: var(--font-outfit); }
+html[data-font="figtree"]          { --font-sans: var(--font-figtree);          --font-heading: var(--font-figtree); }
 
 /* ============================================================
    Density
